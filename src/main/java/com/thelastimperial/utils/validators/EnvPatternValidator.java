@@ -10,16 +10,25 @@ import com.thelastimperial.utils.annotations.EnvPattern;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
+/**
+ * Validator to pattern from a environment varibale.
+ * EnvPatternValidator
+*/
 public class EnvPatternValidator implements ConstraintValidator<EnvPattern, String>{
     private final Log log = LogFactory.getLog(EnvPatternValidator.class);
     private final Environment env;
     private Pattern pattern;
-
+    /**
+     * Constructor with the Environment.
+     * @param env Environment to load property values.
+    */
     public EnvPatternValidator(Environment env) {
         this.env = env;
     }
-
+    /**    (non-Javadoc)
+     * Create Pattern object from environment variable.
+     * @see jakarta.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
+    */
     @Override
     public void initialize(EnvPattern constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
@@ -37,7 +46,10 @@ public class EnvPatternValidator implements ConstraintValidator<EnvPattern, Stri
         log.debug("Property Value: " + patternStr);
         pattern = Pattern.compile(patternStr);
     }
-
+    /**    (non-Javadoc)
+     * Validate input with Pattern.
+     * @see jakarta.validation.ConstraintValidator#isValid(java.lang.Object, jakarta.validation.ConstraintValidatorContext)
+    */
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         boolean result = pattern.matcher(value).matches();
@@ -47,5 +59,5 @@ public class EnvPatternValidator implements ConstraintValidator<EnvPattern, Stri
         return result;
     }
 
-    
+
 }

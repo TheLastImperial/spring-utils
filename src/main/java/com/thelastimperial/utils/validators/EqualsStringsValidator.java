@@ -8,12 +8,25 @@ import com.thelastimperial.utils.annotations.EqualsStrings;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
+/**
+ *
+ * EqualsStringsValidator Validate two properties values from a object,
+ * setting the properties names.
+*/
 public class EqualsStringsValidator implements ConstraintValidator<EqualsStrings, Object>{
     private final Log log = LogFactory.getLog(EqualsStringsValidator.class);
 
+    /**
+     * First property name to validate.
+    */
     private String field;
+    /**
+     * Second property name to validate.
+    */
     private String fieldMatch;
+    /**
+     * Message to display when the fields values are not the same.
+    */
     private String message;
 
     @Override
@@ -48,5 +61,5 @@ public class EqualsStringsValidator implements ConstraintValidator<EqualsStrings
         }
 
         return fieldValue.equals(fieldMatchValue);
-    }    
+    }
 }
