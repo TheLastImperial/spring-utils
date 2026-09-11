@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
+
     steps:
     - uses: actions/checkout@v7
     - name: Set up JDK 21
@@ -20,8 +22,13 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+        server-id: github
+        server-username-env-var: GITHUB_ACTOR
+        server-password-env-var: GITHUB_TOKEN
     - name: Build with Maven
-      run: mvn -B clean package -Dmaven.test.skip
+      run: mvn -B clean package deploy -DskipTests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get Project version
       id: get_version
@@ -40,16 +47,8 @@ jobs:
     - name: Create notes for release from commits.
       id: release_notes
       run: |
-        # Search last tag
-        PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
-        
-        if [ -z "$PREV_TAG" ]; then
-          echo "Not previus tag. Get all commits..."
-          CHANGELOG=$(git log --pretty=format:"* %s (%h)")
-        else
-          echo "Get commits from: $PREV_TAG..."
-          CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"* %s (%h)")
-        fi
+        echo "Reading CHANGELOG.md..."
+        CHANGELOG=$(cat CHANGELOG.md)
 
         # Save messages in multiline variable.
         EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
@@ -58,7 +57,7 @@ jobs:
         echo "$EOF" >> $GITHUB_ENV
 
     - name: create Tag and Release on GitHub
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         tag_name: "v${{ env.VERSION }}"
         name: "Release v${{ env.VERSION }}"
