@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.thelastimperial</groupId>
 	<artifactId>utils</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>Utils</name>
 	<description>
 		Reused functionality to be used on multiples Spring Boot projects.
