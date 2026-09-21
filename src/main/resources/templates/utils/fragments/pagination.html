@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <div
+      th:fragment="pagination(page, defaultSize, baseUrl)"
+      class="d-flex flex-wrap justify-content-between align-items-center mt-3 gap-2"
+      th:with="size=${param.size == null ? defaultSize : param.size}">
+      <span id="paginationInfo"
+        class="text-muted small"
+        th:text="'Page ' + ${page.getNumber + 1} + ' of ' + ${page.getTotalPages}">
+      </span>
+      <nav>
+        <ul class="pagination pagination-sm mb-0" id="pagination">
+          <li
+            class="page-item"
+            th:classappend="${page.hasPrevious} ? '' : 'disabled'">
+            <a class="page-link" href="#" th:if="${not page.hasPrevious}">
+              Previus
+            </a>
+            <a class="page-link"
+              th:href="@{{baseUrl}?page={page}&size={size}(page=${page.getNumber},size=${size},baseUrl=${baseUrl})}"
+              th:if="${page.hasPrevious}">
+              Previus
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" th:text="${page.getNumber + 1}">
+            </a>
+          </li>
+          <li class="page-item"
+            th:classappend="${page.hasNext} ? '' : 'disabled'">
+            <a class="page-link" href="#"
+              th:if="${not page.hasNext}">
+              Next
+            </a>
+            <a class="page-link"
+              th:href="@{{baseUrl}?page={page}&size={size}(page=${page.getNumber + 2},size=${size},baseUrl=${baseUrl})}"
+              th:if="${page.hasNext}">
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
