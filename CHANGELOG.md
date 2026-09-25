@@ -1,30 +1,15 @@
 # Changes
 
-Changes to version 0.0.5
+Changes to version 0.0.6
 
-## PageUtils
+## Base64
 
-Utils to get a secure page and page size to use with pagination.
+Base64Utils utils to generate base64 Strings.
 
-## AuditWrapper
+## Checksum
 
-Wrapper to save audit data.
+Generate Checksum of files.
 
-## NotificationHandler
+## Layouts.
 
-Interface to manage notifications.
-
-## Pagination fragment
-
-Pagination fragment to be reused.
-
-Parameters:
-    page: Page object
-    defaultSize: The default size of every page
-    baseUrl: The base url to go to next and previus page.
-
-Pagination use the baseUrl and two params to navigate, `page` and `size`.
-
-## Dependencies added
-    - spring-boot-starter-thymeleaf
-    - lombok
+Added default layout that can be reused.
