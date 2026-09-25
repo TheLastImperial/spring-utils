@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.thelastimperial</groupId>
 	<artifactId>utils</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>Utils</name>
 	<description>
 		Reused functionality to be used on multiples Spring Boot projects.
@@ -50,6 +50,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>4.0.1</version>
 		</dependency>
 
 		<dependency>
