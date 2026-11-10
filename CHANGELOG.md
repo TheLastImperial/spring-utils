@@ -1,15 +1,14 @@
 # Changes
 
-Changes to version 0.0.6
+Changes to version 0.0.7
 
-## Base64
+## I18nWebConfigurer
 
-Base64Utils utils to generate base64 Strings.
-
-## Checksum
-
-Generate Checksum of files.
+Added default configuration to I18n with default on English.
 
 ## Layouts.
 
-Added default layout that can be reused.
+Pagination Fragment:
+ - Added param `q` to be used has search key.
+ - Added params to translate the texts output.
+
