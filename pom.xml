@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.thelastimperial</groupId>
 	<artifactId>utils</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 	<name>Utils</name>
 	<description>
 		Reused functionality to be used on multiples Spring Boot projects.
@@ -59,6 +59,11 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>4.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j-redis</artifactId>
+			<version>8.10.1</version>
 		</dependency>
 
 		<dependency>
