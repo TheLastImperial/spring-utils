@@ -1,14 +1,11 @@
 # Changes
 
-Changes to version 0.0.7
+Changes to version 0.0.8
 
-## I18nWebConfigurer
+## Rate Limits
 
-Added default configuration to I18n with default on English.
+New interface `RateLimitService` created to implements Token Bucket algorithm.
 
-## Layouts.
-
-Pagination Fragment:
- - Added param `q` to be used has search key.
- - Added params to translate the texts output.
-
+There is two default implementations:
+ - `LocalRateLimitService`: Save the bucket on local memory.
+ - `RedisRateLimitService`: Save the bucket on redis for distributed systems.
