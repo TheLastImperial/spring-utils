@@ -1,11 +1,11 @@
 # Changes
 
-Changes to version 0.0.8
+Changes to version 0.0.9
 
 ## Rate Limits
 
-New interface `RateLimitService` created to implements Token Bucket algorithm.
+Updated `RedisRateLimitService` with generic interface `ProxyManager`.
 
-There is two default implementations:
- - `LocalRateLimitService`: Save the bucket on local memory.
- - `RedisRateLimitService`: Save the bucket on redis for distributed systems.
+## Errors pages
+
+Added 404 error page.
