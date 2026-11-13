@@ -8,17 +8,17 @@ import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.BandwidthBuilder;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.BucketConfiguration;
-import io.github.bucket4j.redis.lettuce.cas.LettuceBasedProxyManager;
+import io.github.bucket4j.distributed.proxy.ProxyManager;
 
 /**
  *
  * RedisRateLimitService RateLimitService implementation with redis storage.
 */
 public class RedisRateLimitService implements RateLimitService {
-    private final LettuceBasedProxyManager<String> cache;
+    private final ProxyManager<String> cache;
     private final Bandwidth limit;
 
-    public RedisRateLimitService(LettuceBasedProxyManager<String> cache) {
+    public RedisRateLimitService(ProxyManager<String> cache) {
         this.cache = cache;
         this.limit = BandwidthBuilder.builder()
             .capacity(5)
@@ -27,7 +27,7 @@ public class RedisRateLimitService implements RateLimitService {
     }
 
     public RedisRateLimitService(
-        LettuceBasedProxyManager<String> cache, Bandwidth loginBandwidth
+        ProxyManager<String> cache, Bandwidth loginBandwidth
     ) {
         this.cache = cache;
         this.limit = loginBandwidth;
